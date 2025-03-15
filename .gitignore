@@ -1,4 +1,4 @@
-raw_data/
+notebooks/runs
 .env
 *.egg-info
 # OS generated files #
@@ -10,3 +10,4 @@ __MACOSX
 __pycache__
 *checkpoint.ipynb
 *.ipynb_checkpoints
+raw_data/models
