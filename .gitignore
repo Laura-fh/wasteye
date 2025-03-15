@@ -1,4 +1,4 @@
-raw_data/
+notebooks/runs
 .env
 *.egg-info
 # OS generated files #
