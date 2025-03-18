@@ -1,0 +1,12 @@
+path: /Users/admin/code/Laura-fh/wasteye/raw_data/small batch # dataset root dir
+train: images/train # 130 train images (relative to path)
+val: images/train # same as train for now
+
+# Classes
+names:
+    0: BIODEGRADABLE
+    1: CARDBOARD
+    2: GLASS
+    3: METAL
+    4: PAPER
+    5: PLASTIC
