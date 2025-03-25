@@ -1,4 +1,4 @@
-path: /Users/admin/code/Laura-fh/wasteye/raw_data/small batch # dataset root dir
+path: /wasteye/raw_data/small batch # dataset root dir
 train: images/train # 130 train images (relative to path)
 val: images/train # same as train for now
 

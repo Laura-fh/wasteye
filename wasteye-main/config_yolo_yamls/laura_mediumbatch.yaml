@@ -1,4 +1,4 @@
-path: /Users/admin/code/Laura-fh/wasteye/raw_data/medium batch # dataset root dir
+path: /raw_data/medium batch # dataset root dir
 train: images/train # 3104 train images (relative to path)
 val: images/train # 3104 same as train for now
 test: images/test # 36
