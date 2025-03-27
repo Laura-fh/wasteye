@@ -4,7 +4,7 @@ import os
 import numpy as np
 
 # Define paths
-DATA_CONFIG = "gs://raw_image_data_testing/cloud_test.yaml"
+#DATA_CONFIG = "gs://raw_image_data_testing/cloud_test.yaml"
 
 def train_yolo(data_yaml, epochs=10, img_size=416): # Define validation dataset
     model = YOLO("yolov10n.pt") # Load a pretrained object detection model
@@ -14,7 +14,7 @@ def train_yolo(data_yaml, epochs=10, img_size=416): # Define validation dataset
     return results
 
 # Train models
-trained_model = train_yolo(data_yaml=DATA_CONFIG)
+trained_model = train_yolo(data_yaml="cloud_test.yaml")
 
 # Load models weights
 #model_beta = YOLO("path/to/best/weight")
