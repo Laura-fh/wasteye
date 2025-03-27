@@ -11,3 +11,6 @@ __pycache__
 *checkpoint.ipynb
 *.ipynb_checkpoints
 raw_data/models
+notebooks/yolov8n-cls.pt
+wasteye-main/laura-experiments
+wasteye-main/runs

@@ -1,7 +1,7 @@
 # Define paths to images on GCS
-path: gs://raw_image_data_testing
-train: small_batch_images  # Training images folder
-val: small_batch_images    # Validation images folder
+#path: gs://raw_image_data_testing
+train: gs://raw_image_data_testing/small_batch_images  # Training images folder
+val: gs://raw_image_data_testing/small_batch_images   # Validation images folder
 
 names:
     0: BIODEGRADABLE
