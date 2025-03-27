@@ -1,7 +1,8 @@
-train: gs://raw_image_data_testing/small_batch_images/
-val: gs://raw_image_data_testing/small_batch_images/
+# Define paths to images on GCS
+path: gs://raw_image_data_testing
+train: small_batch_images  # Training images folder
+val: small_batch_images    # Validation images folder
 
-# Classes
 names:
     0: BIODEGRADABLE
     1: CARDBOARD
