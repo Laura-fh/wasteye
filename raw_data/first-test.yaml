@@ -1,7 +1,0 @@
-path: /Users/sr.valencia/code/Laura-fh/wasteye/raw_data/images #dataset root dir
-train: images/train # 130 train images (relative to path)
-val: images/train
-
-# Classes
-nc: 6
-names: ['BIODEGRADABLE', 'CARDBOARD', 'GLASS', 'METAL', 'PAPER', 'PLASTIC']

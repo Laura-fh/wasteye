@@ -2,7 +2,6 @@ path: /home/jeremierahaja/gcs-wasteye
 train: small_batch_images
 val: small_batch_images
 
-# Classes
 names:
     0: BIODEGRADABLE
     1: CARDBOARD
