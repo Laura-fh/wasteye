@@ -99,7 +99,7 @@ def pred(model, images_path="~/gcs/images/test", conf=0.20, imgsz=416, save=True
 
 
 if __name__ == '__main__':
-    #train_model()
+    train_model()
     move_weights()
     evaluate_model()
-    pred()
+    #pred()
