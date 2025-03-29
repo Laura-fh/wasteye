@@ -4,7 +4,7 @@ import os
 import shutil
 
 
-def train_model(model=YOLO("yolov10n.pt"), data_yaml="wasteye-main/yolo_config.yaml", epochs=10, img_size=416):
+def train_model(model_version="yolov10n.pt", data_yaml="wasteye-main/yolo_config.yaml", epochs=10, img_size=416, batch_size=16):
     '''
     Train a YOLOv10 model on our custom dataset.
     Args:
@@ -17,8 +17,9 @@ def train_model(model=YOLO("yolov10n.pt"), data_yaml="wasteye-main/yolo_config.y
         Contains training details (metrics, loss values, etc).
     '''
     # Load a pretrained object detection model
+    model = YOLO(model_version)
     print(f"\n🚀 Training model...\n")
-    results = model.train(data=data_yaml, epochs=epochs, imgsz=img_size)
+    results = model.train(data=data_yaml, epochs=epochs, imgsz=img_size, batch_size=batch_size)
     print("✅ Training Complete!")
     return results
 
