@@ -1,6 +1,7 @@
-path: /home/jeremierahaja/gcs-wasteye
-train: small_batch_images
-val: small_batch_images
+path: /home/jeremierahaja/gcs
+train: images/train
+val: images/train
+test: images/test
 
 names:
     0: BIODEGRADABLE
