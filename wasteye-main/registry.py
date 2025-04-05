@@ -9,7 +9,6 @@ load_dotenv()
 # Access GCS bucket
 BUCKET_NAME = "model_storage_wasteyeai"
 
-
 # Authenticate
 def get_gcs_client():
     # credentials, project = default ()
