@@ -1,6 +1,12 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, UploadFile, File, Form
+from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from ultralytics import YOLO
+import traceback
+
+from PIL import Image
+from io import BytesIO
+import requests
 
 app = FastAPI()
 
@@ -16,35 +22,56 @@ app.add_middleware(
 # to load the model_
 app.state.model = YOLO('wasteye-main/api/best_model_weights.pt', task='detect')
 
-@app.get("/predict")
-def predict(image="wasteye-main/api/test_api.jpg"):
+@app.post("/predict")
+async def predict(file: UploadFile = File(None), image_url=None):
+    
+    try: 
+        if file:
+            contents = await file.read()
+            image = Image.open(BytesIO(contents))
+        
+        elif image_url:
+            response = requests.get(image_url)
+            response.raise_for_status()
+            image= Image.open(BytesIO(response.content))
+            
+        else:
+            raise ValueError("No image input provided.")
+        
+        model = app.state.model
 
-    model = app.state.model
+        results = model.predict(image, conf=0.183, iou=0.386, save=False)
+        
+        output = []
+        for result in results:
+            detections = []
+            for box in result.boxes:
+                cls_id = int(box.cls[0])
+                label = model.names[cls_id]
+                conf = float(box.conf[0])
+                bbox = list(map(float, box.xyxy[0]))
 
-    results = model.predict(image, conf=0.183, iou=0.386, save=False)
+                detections.append({
+                    "class": label,
+                    "confidence": round(conf, 2),
+                    "bbox": bbox
+                    
+                })
 
-    output = []
-    for result, path in zip(results, image):
-        detections = []
-        for box in result.boxes:
-            cls_id = int(box.cls[0])
-            label = model.names[cls_id]
-            conf = float(box.conf[0])
-            bbox = list(map(float, box.xyxy[0]))
-
-            detections.append({
-                "class": label,
-                "confidence": round(conf, 2),
-                "bbox": bbox
-                
+            output.append({
+                "detections": detections
             })
+            # print(output)
+            return {"results": output}
+        
+    except Exception as e:
+        traceback.print_exc()
+        return JSONResponse(content={"error": str(e)}, status_code=500)
 
-        output.append({
-            "image_path": path,
-            "detections": detections
-        })
-    # print(output)
-    return {"results": output}
+
+
+
+
 
 
 @app.get("/")
