@@ -13,15 +13,15 @@ app.add_middleware(
     allow_headers=["*"], # Allows all headers
 )
 
-# to load the model
-app.state.model = YOLO('yolov10n.pt', task='detect')
+# to load the model_
+app.state.model = YOLO('wasteye-main/api/best_model_weights.pt', task='detect')
 
 @app.get("/predict")
 def predict(image="wasteye-main/api/test_api.jpg"):
 
     model = app.state.model
 
-    results = model.predict(image, conf=0.25)
+    results = model.predict(image, conf=0.183, iou=0.386, save=False)
 
     output = []
     for result, path in zip(results, image):
@@ -36,6 +36,7 @@ def predict(image="wasteye-main/api/test_api.jpg"):
                 "class": label,
                 "confidence": round(conf, 2),
                 "bbox": bbox
+                
             })
 
         output.append({
@@ -56,4 +57,4 @@ if __name__ == "__main__":
     import uvicorn
     print("Starting Uvicorn server for development...")
     # Note: reload=True is for development, disable in production
-    uvicorn.run("api:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("api:app", host="127.0.0.1", port=8000, reload=True)
