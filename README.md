@@ -32,7 +32,8 @@ This project was developed as part of a data science and AI bootcamp and focuses
 
 ## 📊 Model Performance
 
-- Trained on 14,000 images  
+- Used 20,000 images
+- 6 classes: Biodegradable, Glass, Plastic, Metal, Paper, Cardboard 
 - Hyperparameter tuning using grid search  
 - Achieved average precision score of **0.75 per class**
 
